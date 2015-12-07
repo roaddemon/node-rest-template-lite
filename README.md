@@ -3,7 +3,7 @@ This template provides a starter project that implements best practices in Node.
 - Use of the [Hexagonal Architecture](http://alistair.cockburn.us/Hexagonal+architecture) to arrange the application into logical layers, with well-defined responsibilities.
 - Use of BDD and [Specification-by-Example](http://specificationbyexample.com/) techniques for documenting application features. [Yadda](https://github.com/acuminous/yadda) is used for automated testing.
 - RESTful APIs are implemented using the [Express](http://expressjs.com/) framework.
-- Persistence is implemented using an in-memory repository layer. This can be substitured with any persistense technology of your choice.
+- Persistence is implemented using an in-memory repository layer. This can be substituted with any persistence technology of your choice.
 - Logging and error handling are implemented using [Bunyan](https://github.com/trentm/node-bunyan).
 - The build system is Gulp based – code changes are reflected in the server immediately.
 
