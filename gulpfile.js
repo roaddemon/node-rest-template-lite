@@ -43,7 +43,7 @@ gulp.task('vet', function() {
 
 
 /**
- * Run Cucumber tests
+ * Run Yadda tests
  * @return {Stream}
  */
 gulp.task('cucumber', function() {

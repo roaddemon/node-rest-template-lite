@@ -108,7 +108,10 @@ The server folder contains sub-folders that arrange the application into logical
 
 - `gulp test`
 
-    Runs all acceptance tests using cucumber. Depends on vet task, for code analysis.
+    Runs all acceptance tests using yadda. Depends on vet task, for code analysis.
+
+    >This is currently not working. Simply run `mocha` from the command line.
+    Make sure Mocha is installed globally.
 
 - `gulp autotest`
 
