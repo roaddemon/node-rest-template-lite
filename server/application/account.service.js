@@ -1,56 +1,56 @@
 'use strict';
 
 module.exports = {
-    createAccount: createAccount,
-    updateAccount: updateAccount,
-    getAccount: getAccount,
-    getAccounts: getAccounts,
-    deleteAccount: deleteAccount
+    createCamelCaseDomain: createCamelCaseDomain,
+    updateCamelCaseDomain: updateCamelCaseDomain,
+    getCamelCaseDomain: getCamelCaseDomain,
+    getCamelCaseDomains: getCamelCaseDomains,
+    deleteCamelCaseDomain: deleteCamelCaseDomain
 };
 
 var persistence = require('./persistence');
-var accountRepository = persistence.accountRepository;
+var pascalCaseDomainRepository = persistence.pascalCaseDomainRepository;
 
 /**
- * Creates a new account and inserts it in to the database.
- * @param {Object} accountData minus the id
- * @return {Promise} A promise that returns the inserted account (including the id)
+ * Creates a new pascalCaseDomain and inserts it in to the database.
+ * @param {Object} pascalCaseDomainData minus the id
+ * @return {Promise} A promise that returns the inserted pascalCaseDomain (including the id)
  */
-function createAccount(accountData) {
-    return accountRepository.createAccount(accountData);
+function createCamelCaseDomain(pascalCaseDomainData) {
+    return pascalCaseDomainRepository.createCamelCaseDomain(pascalCaseDomainData);
 }
 
 /**
- * Updates an existing account.
- * @param {Object} accountData including the id
- * @return {Promise} A promise that returns the updated account (including the id)
+ * Updates an existing pascalCaseDomain.
+ * @param {Object} pascalCaseDomainData including the id
+ * @return {Promise} A promise that returns the updated pascalCaseDomain (including the id)
  */
-function updateAccount(accountData) {
-    return accountRepository.updateAccount(accountData);
+function updateCamelCaseDomain(pascalCaseDomainData) {
+    return pascalCaseDomainRepository.updateCamelCaseDomain(pascalCaseDomainData);
 }
 
 /**
- * Gets an existing account.
+ * Gets an existing pascalCaseDomain.
  * @param {integer} id
- * @return {Promise} A promise that returns the desired account.
+ * @return {Promise} A promise that returns the desired pascalCaseDomain.
  */
-function getAccount(id) {
-    return accountRepository.getAccount(id);
+function getCamelCaseDomain(id) {
+    return pascalCaseDomainRepository.getCamelCaseDomain(id);
 }
 
 /**
- * Gets all accounts.
- * @return {Promise} A promise that returns an array of all accounts.
+ * Gets all pascalCaseDomains.
+ * @return {Promise} A promise that returns an array of all pascalCaseDomains.
  */
-function getAccounts() {
-    return accountRepository.getAccounts();
+function getCamelCaseDomains() {
+    return pascalCaseDomainRepository.getCamelCaseDomains();
 }
 
 /**
- * Deletes an account.
+ * Deletes an pascalCaseDomain.
  * @param {integer} id
- * @return {Promise} A promise that gets fulfilled when the account is deleted.
+ * @return {Promise} A promise that gets fulfilled when the pascalCaseDomain is deleted.
  */
-function deleteAccount(id) {
-    return accountRepository.deleteAccount(id);
+function deleteCamelCaseDomain(id) {
+    return pascalCaseDomainRepository.deleteCamelCaseDomain(id);
 }

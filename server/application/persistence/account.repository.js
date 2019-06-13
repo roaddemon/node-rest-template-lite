@@ -1,83 +1,83 @@
 'use strict';
 
 module.exports = {
-    createAccount: createAccount,
-    updateAccount: updateAccount,
-    getAccount: getAccount,
-    getAccounts: getAccounts,
-    deleteAccount: deleteAccount,
+    createCamelCaseDomain: createCamelCaseDomain,
+    updateCamelCaseDomain: updateCamelCaseDomain,
+    getCamelCaseDomain: getCamelCaseDomain,
+    getCamelCaseDomains: getCamelCaseDomains,
+    deleteCamelCaseDomain: deleteCamelCaseDomain,
     dropData: dropData
 };
 
 var _ = require('lodash');
 var Promise = require('bluebird');
-var Account = require('../../domain').Account;
+var CamelCaseDomain = require('../../domain').CamelCaseDomain;
 var errors = require('../../infrastructure').errors;
 
-var accounts = [];
-var nextAccountId = 1;
+var pascalCaseDomains = [];
+var nextCamelCaseDomainId = 1;
 
 /**
- * Creates a new account and inserts it in to the database.
- * @param {Object} accountData minus the id
- * @return {Promise} A promise that returns the inserted account (including the id)
+ * Creates a new pascalCaseDomain and inserts it in to the database.
+ * @param {Object} pascalCaseDomainData minus the id
+ * @return {Promise} A promise that returns the inserted pascalCaseDomain (including the id)
  */
-function createAccount(accountData) {
-    var account = new Account(accountData);
-    account.id = nextAccountId++;
-    accounts.push(account);
-    return Promise.resolve(account);
+function createCamelCaseDomain(pascalCaseDomainData) {
+    var pascalCaseDomain = new CamelCaseDomain(pascalCaseDomainData);
+    pascalCaseDomain.id = nextCamelCaseDomainId++;
+    pascalCaseDomains.push(pascalCaseDomain);
+    return Promise.resolve(pascalCaseDomain);
 }
 
 /**
- * Updates an existing account.
- * @param {Object} accountData including the id
- * @return {Promise} A promise that returns the updated account (including the id)
+ * Updates an existing pascalCaseDomain.
+ * @param {Object} pascalCaseDomainData including the id
+ * @return {Promise} A promise that returns the updated pascalCaseDomain (including the id)
  */
-function updateAccount(accountData) {
-    var account = _.find(accounts, 'id', accountData.id);
-    return account ?
-        Promise.resolve(_.extend(account, accountData)) :
+function updateCamelCaseDomain(pascalCaseDomainData) {
+    var pascalCaseDomain = _.find(pascalCaseDomains, 'id', pascalCaseDomainData.id);
+    return pascalCaseDomain ?
+        Promise.resolve(_.extend(pascalCaseDomain, pascalCaseDomainData)) :
         Promise.reject(new errors.NotFoundError('Not found'));
 }
 
 /**
- * Gets an existing account.
+ * Gets an existing pascalCaseDomain.
  * @param {integer} id
- * @return {Promise} A promise that returns the desired account.
+ * @return {Promise} A promise that returns the desired pascalCaseDomain.
  */
-function getAccount(id) {
-    var account = _.find(accounts, 'id', id);
-    return account ?
-        Promise.resolve(account) :
+function getCamelCaseDomain(id) {
+    var pascalCaseDomain = _.find(pascalCaseDomains, 'id', id);
+    return pascalCaseDomain ?
+        Promise.resolve(pascalCaseDomain) :
         Promise.reject(new errors.NotFoundError('Not found'));
 }
 
 /**
- * Gets all accounts.
- * @return {Promise} A promise that returns an array of all accounts.
+ * Gets all pascalCaseDomains.
+ * @return {Promise} A promise that returns an array of all pascalCaseDomains.
  */
-function getAccounts() {
-    return Promise.resolve(accounts);
+function getCamelCaseDomains() {
+    return Promise.resolve(pascalCaseDomains);
 }
 
 /**
- * Deletes an account.
+ * Deletes an pascalCaseDomain.
  * @param {integer} id
- * @return {Promise} A promise that gets fulfilled when the account is deleted.
+ * @return {Promise} A promise that gets fulfilled when the pascalCaseDomain is deleted.
  */
-function deleteAccount(id) {
-    var index = _.findIndex(accounts, function(account) {
-        return account.id === id;
+function deleteCamelCaseDomain(id) {
+    var index = _.findIndex(pascalCaseDomains, function(pascalCaseDomain) {
+        return pascalCaseDomain.id === id;
     });
     return index >= 0 ?
-        Promise.resolve(accounts.splice(index, 1)) :
+        Promise.resolve(pascalCaseDomains.splice(index, 1)) :
         Promise.reject(new errors.NotFoundError('Not found'));
 }
 
 /**
- * Drops all account data.
+ * Drops all pascalCaseDomain data.
  */
 function dropData() {
-    accounts.length = 0;
+    pascalCaseDomains.length = 0;
 }

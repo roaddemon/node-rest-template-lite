@@ -5,11 +5,11 @@ module.exports = {
 };
 
 var persistence = require('./persistence');
-var accountRepository = persistence.accountRepository;
+var pascalCaseDomainRepository = persistence.pascalCaseDomainRepository;
 
 /**
  * Drops all data from all repositories.
  */
 function dropData() {
-    return accountRepository.dropData();
+    return pascalCaseDomainRepository.dropData();
 }

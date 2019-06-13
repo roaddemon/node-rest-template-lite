@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * An account.
+ * An pascalCaseDomain.
  *   {int}     id
- *   {String}  name - name of the account
+ *   {String}  name - name of the pascalCaseDomain
  *
  * Example:
  *   {
@@ -14,10 +14,10 @@
 
 var _ = require('lodash');
 
-var Account = function(accountData) {
-    if (accountData) {
-        _.extend(this, accountData);
+var CamelCaseDomain = function(pascalCaseDomainData) {
+    if (pascalCaseDomainData) {
+        _.extend(this, pascalCaseDomainData);
     }
 };
 
-module.exports = Account;
+module.exports = CamelCaseDomain;

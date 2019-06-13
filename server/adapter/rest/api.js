@@ -22,7 +22,7 @@ api.use(bodyParser.json());
 api.use('/', express.static(__dirname + '/../../public'));
 
 // Add API routes
-require('./account.adapter').addRoutes(api);
+require('./lowercasedomain.adapter').addRoutes(api);
 require('./test.adapter').addRoutes(api);
 
 module.exports = api;

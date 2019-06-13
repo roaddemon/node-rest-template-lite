@@ -4,7 +4,7 @@
 var Yadda = require('yadda');
 var expect = require('./common/chai.helpers').expect;
 var formatHttpError = require('./common/http.helpers').formatHttpError;
-var accountService = require('./services/account.service');
+var pascalCaseDomainService = require('./services/lowercasedomain.service');
 
 var English = Yadda.localisation.English;
 var Dictionary = Yadda.Dictionary;
@@ -14,43 +14,43 @@ var dictionary = new Dictionary()
 
 module.exports = English.library(dictionary)
 
-    .given('an account called $accountName', function(accountName, next) {
+    .given('an pascalCaseDomain called $pascalCaseDomainName', function(pascalCaseDomainName, next) {
         var self = this;
 
-        accountService.createAccount({ name: accountName })
-            .then(function(account) {
-                self.ctx.account = account;
+        pascalCaseDomainService.createCamelCaseDomain({ name: pascalCaseDomainName })
+            .then(function(pascalCaseDomain) {
+                self.ctx.pascalCaseDomain = pascalCaseDomain;
                 next();
             });
     })
 
-    .when('I create an account called $accountName', function(accountName, next) {
+    .when('I create an pascalCaseDomain called $pascalCaseDomainName', function(pascalCaseDomainName, next) {
         var self = this;
 
-        accountService.createAccount({ name: accountName })
-            .then(function(account) {
-                self.ctx.account = account;
+        pascalCaseDomainService.createCamelCaseDomain({ name: pascalCaseDomainName })
+            .then(function(pascalCaseDomain) {
+                self.ctx.pascalCaseDomain = pascalCaseDomain;
                 next();
             });
     })
 
-    .when('I change the account name to $accountName', function(accountName, next) {
+    .when('I change the pascalCaseDomain name to $pascalCaseDomainName', function(pascalCaseDomainName, next) {
         var self = this;
 
-        self.ctx.account.name = accountName;
-        accountService.updateAccount(self.ctx.account)
-            .then(function(account) {
-                self.ctx.account = account;
+        self.ctx.pascalCaseDomain.name = pascalCaseDomainName;
+        pascalCaseDomainService.updateCamelCaseDomain(self.ctx.pascalCaseDomain)
+            .then(function(pascalCaseDomain) {
+                self.ctx.pascalCaseDomain = pascalCaseDomain;
                 next();
             });
     })
 
-    .when('I ask for the account', function(next) {
+    .when('I ask for the pascalCaseDomain', function(next) {
         var self = this;
 
-        accountService.getAccount(self.ctx.account.id)
-            .then(function(account) {
-                self.ctx.account = account;
+        pascalCaseDomainService.getCamelCaseDomain(self.ctx.pascalCaseDomain.id)
+            .then(function(pascalCaseDomain) {
+                self.ctx.pascalCaseDomain = pascalCaseDomain;
                 next();
             })
             .catch(function(httpError) {
@@ -59,16 +59,16 @@ module.exports = English.library(dictionary)
             });
     })
 
-    .when('I delete the account', function(next) {
-        accountService.deleteAccount(this.ctx.account.id)
+    .when('I delete the pascalCaseDomain', function(next) {
+        pascalCaseDomainService.deleteCamelCaseDomain(this.ctx.pascalCaseDomain.id)
             .then(function() {
                 next();
             });
     })
 
-    .then ('I should get the account called $accountName', function(accountName, next) {
+    .then ('I should get the pascalCaseDomain called $pascalCaseDomainName', function(pascalCaseDomainName, next) {
         expect(this.ctx.error).to.be.undefined;
-        expect(this.ctx.account).to.exist;
-        expect(this.ctx.account.name).to.equal(accountName);
+        expect(this.ctx.pascalCaseDomain).to.exist;
+        expect(this.ctx.pascalCaseDomain.name).to.equal(pascalCaseDomainName);
         next();
     });

@@ -1,6 +1,6 @@
 'use strict';
 
 module.exports = {
-    accountService: require('./account.service'),
+    pascalCaseDomainService: require('./lowercasedomain.service'),
     testService: require('./test.service')
 };

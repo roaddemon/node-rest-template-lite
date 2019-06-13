@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-    Account: require('./account')
+    CamelCaseDomain: require('./lowercasedomain')
 };

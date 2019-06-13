@@ -1,26 +1,26 @@
 'use strict';
 
 module.exports = {
-    createAccount: createAccount,
-    updateAccount: updateAccount,
-    getAccount: getAccount,
-    getAccounts: getAccounts,
-    deleteAccount: deleteAccount
+    createCamelCaseDomain: createCamelCaseDomain,
+    updateCamelCaseDomain: updateCamelCaseDomain,
+    getCamelCaseDomain: getCamelCaseDomain,
+    getCamelCaseDomains: getCamelCaseDomains,
+    deleteCamelCaseDomain: deleteCamelCaseDomain
 };
 
 var api = require('../common/constants').api;
 var request = require('./request');
 
 /**
- * Creates an account.
+ * Creates an pascalCaseDomain.
  *
- * @param {Account} account
- * @return {Promise<Account>}
+ * @param {CamelCaseDomain} pascalCaseDomain
+ * @return {Promise<CamelCaseDomain>}
  */
-function createAccount(account) {
+function createCamelCaseDomain(pascalCaseDomain) {
 
-    return request.post(api + '/accounts')
-        .send(account)
+    return request.post(api + '/lowercasedomains')
+        .send(pascalCaseDomain)
         .endAsync()
         .then(function(res) {
             return res.body;
@@ -28,15 +28,15 @@ function createAccount(account) {
 }
 
 /**
- * Updates an account.
+ * Updates an pascalCaseDomain.
  *
- * @param {Account} account
- * @return {Promise<Account>}
+ * @param {CamelCaseDomain} pascalCaseDomain
+ * @return {Promise<CamelCaseDomain>}
  */
-function updateAccount(account) {
+function updateCamelCaseDomain(pascalCaseDomain) {
 
-    return request.put(api + '/accounts/' + account.id)
-        .send(account)
+    return request.put(api + '/lowercasedomains/' + pascalCaseDomain.id)
+        .send(pascalCaseDomain)
         .endAsync()
         .then(function(res) {
             return res.body;
@@ -44,14 +44,14 @@ function updateAccount(account) {
 }
 
 /**
- * Gets an account
+ * Gets an pascalCaseDomain
  *
- * @param {string} accountId
- * @return {Promise<Account>}
+ * @param {string} pascalCaseDomainId
+ * @return {Promise<CamelCaseDomain>}
  */
-function getAccount(accountId) {
+function getCamelCaseDomain(pascalCaseDomainId) {
 
-    return request.get(api + '/accounts/' + accountId)
+    return request.get(api + '/lowercasedomains/' + pascalCaseDomainId)
         .endAsync()
         .then(function(res) {
             return res.body;
@@ -59,13 +59,13 @@ function getAccount(accountId) {
 }
 
 /**
- * Gets all accounts
+ * Gets all pascalCaseDomains
  *
- * @return {Promise<Account[]>}
+ * @return {Promise<CamelCaseDomain[]>}
  */
-function getAccounts() {
+function getCamelCaseDomains() {
 
-    return request.get(api + '/accounts')
+    return request.get(api + '/lowercasedomains')
         .endAsync()
         .then(function(res) {
             return res.body;
@@ -73,14 +73,14 @@ function getAccounts() {
 }
 
 /**
- * Deletes an account.
+ * Deletes an pascalCaseDomain.
  *
  * @static
- * @param {string} accountId
+ * @param {string} pascalCaseDomainId
  * @return {Promise<true>}
  */
-function deleteAccount(accountId) {
+function deleteCamelCaseDomain(pascalCaseDomainId) {
 
-    return request.del(api + '/accounts/' + accountId)
+    return request.del(api + '/lowercasedomains/' + pascalCaseDomainId)
         .endAsync();
 }

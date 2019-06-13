@@ -8,31 +8,31 @@ module.exports = {
  * Adds routes to the api.
  */
 function addRoutes(api) {
-    api.post('/accounts', createAccount);
-    api.put('/accounts/:id', updateAccount);
-    api.get('/accounts/:id', getAccount);
-    api.get('/accounts', getAccounts);
-    api.delete('/accounts/:id', deleteAccount);
+    api.post('/lowercasedomains', createCamelCaseDomain);
+    api.put('/lowercasedomains/:id', updateCamelCaseDomain);
+    api.get('/lowercasedomains/:id', getCamelCaseDomain);
+    api.get('/lowercasedomains', getCamelCaseDomains);
+    api.delete('/lowercasedomains/:id', deleteCamelCaseDomain);
 }
 
 var infrastructure = require('../../infrastructure');
 var log = infrastructure.logger;
 var errors = infrastructure.errors;
 
-var accountService = require('../../application').accountService;
+var pascalCaseDomainService = require('../../application').pascalCaseDomainService;
 
 /**
- * Creates a new account and inserts it in to the database.
- * @param {Object} req - req.body contains accountData minus the id
- * @param {Object} res - res.body contains the inserted account (including the id)
+ * Creates a new pascalCaseDomain and inserts it in to the database.
+ * @param {Object} req - req.body contains pascalCaseDomainData minus the id
+ * @param {Object} res - res.body contains the inserted pascalCaseDomain (including the id)
  */
-function createAccount(req, res) {
+function createCamelCaseDomain(req, res) {
 
-    var accountData = req.body;
+    var pascalCaseDomainData = req.body;
 
-    accountService.createAccount(accountData)
-        .then(function(account) {
-            res.send(account);
+    pascalCaseDomainService.createCamelCaseDomain(pascalCaseDomainData)
+        .then(function(pascalCaseDomain) {
+            res.send(pascalCaseDomain);
         })
         .catch(function(error) {
             log.error(error);
@@ -41,17 +41,17 @@ function createAccount(req, res) {
 }
 
 /**
- * Updates an existing account.
- * @param {Object} req - req.body contains accountData including the id
- * @param {Object} res - res.body contains the updated account (including the id)
+ * Updates an existing pascalCaseDomain.
+ * @param {Object} req - req.body contains pascalCaseDomainData including the id
+ * @param {Object} res - res.body contains the updated pascalCaseDomain (including the id)
  */
-function updateAccount(req, res) {
+function updateCamelCaseDomain(req, res) {
 
-    var accountData = req.body;
+    var pascalCaseDomainData = req.body;
 
-    accountService.updateAccount(accountData)
-        .then(function(account) {
-            res.send(account);
+    pascalCaseDomainService.updateCamelCaseDomain(pascalCaseDomainData)
+        .then(function(pascalCaseDomain) {
+            res.send(pascalCaseDomain);
         })
         .catch(function(error) {
             log.error(error);
@@ -60,20 +60,20 @@ function updateAccount(req, res) {
 }
 
 /**
- * Gets an existing account.
- * @param {Object} req - req.params.id contains id of the account to get
- * @param {Object} res - res.body contains the requested account
+ * Gets an existing pascalCaseDomain.
+ * @param {Object} req - req.params.id contains id of the pascalCaseDomain to get
+ * @param {Object} res - res.body contains the requested pascalCaseDomain
  */
-function getAccount(req, res) {
+function getCamelCaseDomain(req, res) {
 
     var id = parseInt(req.params.id);
 
-    accountService.getAccount(id)
-        .then(function(account) {
-            res.send(account);
+    pascalCaseDomainService.getCamelCaseDomain(id)
+        .then(function(pascalCaseDomain) {
+            res.send(pascalCaseDomain);
         })
         .catch(errors.NotFoundError, function() {
-            res.status(404).send({'message': 'Account ' + id + ' does not exist'});
+            res.status(404).send({'message': 'CamelCaseDomain ' + id + ' does not exist'});
         })
         .catch(function(error) {
             log.error(error);
@@ -82,14 +82,14 @@ function getAccount(req, res) {
 }
 
 /**
- * Gets all accounts.
+ * Gets all pascalCaseDomains.
  * @param {Object} req - no used
- * @param {Object} res - res.body contains an array of all accounts
+ * @param {Object} res - res.body contains an array of all pascalCaseDomains
  */
-function getAccounts(req, res) {
-    accountService.getAccounts()
-        .then(function(accounts) {
-            res.send(accounts);
+function getCamelCaseDomains(req, res) {
+    pascalCaseDomainService.getCamelCaseDomains()
+        .then(function(pascalCaseDomains) {
+            res.send(pascalCaseDomains);
         })
         .catch(function(error) {
             log.error(error);
@@ -98,15 +98,15 @@ function getAccounts(req, res) {
 }
 
 /**
- * Deletes an account.
- * @param {Object} req - req.params.id contains id of the account to delete
+ * Deletes an pascalCaseDomain.
+ * @param {Object} req - req.params.id contains id of the pascalCaseDomain to delete
  * @param {Object} res - res.body contains no content
  */
-function deleteAccount(req, res) {
+function deleteCamelCaseDomain(req, res) {
 
     var id = parseInt(req.params.id);
 
-    accountService.deleteAccount(id)
+    pascalCaseDomainService.deleteCamelCaseDomain(id)
         .then(function() {
             res.status(204).send();  // No Content
         })

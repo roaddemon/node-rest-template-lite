@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-    accountRepository: require('./account.repository')
+    pascalCaseDomainRepository: require('./lowercasedomain.repository')
 };
