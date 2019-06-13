@@ -6,10 +6,10 @@ echo $CamelCaseDomain
 echo $pascalCaseDomain
 echo $lowercasedomain
 
-git mv server/adapter/rest/account.adapter.js server/adapter/rest/$lowercasedomain.adapter.js
-git mv server/application/account.service.js server/application/$lowercasedomain.service.js
-git mv server/application/persistence/account.repository.js server/application/persistence/$lowercasedomain.repository.js
-git mv server/domain/account.js server/domain/$lowercasedomain.js
+git mv server/adapter/rest/domain.adapter.js server/adapter/rest/$lowercasedomain.adapter.js
+git mv server/application/domain.service.js server/application/$lowercasedomain.service.js
+git mv server/application/persistence/domain.repository.js server/application/persistence/$lowercasedomain.repository.js
+git mv server/domain/domain.js server/domain/$lowercasedomain.js
 
 find . -name '*.js' -exec sed -i -e 's/CamelCaseDomain/'"$CamelCaseDomain"'/g' {} \;
 find . -name '*.js' -exec sed -i -e 's/pascalCaseDomain/'"$pascalCaseDomain"'/g' {} \;
