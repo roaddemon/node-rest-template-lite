@@ -1,4 +1,21 @@
 #first clone like this: http://deanmalone.net/post/how-to-fork-your-own-repo-on-github/
+
+if [[ $# -ne 1 ]] ; then
+    echo 'usage: initfromtemplate.sh [CamelCaseDomainObject]'
+    exit 1
+fi
+
+CC="${1^}" #set first letter uppercase
+
+#Check equality of a variable with a string value
+
+if [ $CC != $1 ]; then
+  echo 'usage: initfromtemplate.sh [CamelCaseDomainObject]'
+  echo 'supplied domain object name was not CamelCase'
+  exit 1
+fi
+
+
 export CamelCaseDomain=$1
 export pascalCaseDomain="${CamelCaseDomain,}"
 export lowercasedomain="${CamelCaseDomain,,}"
