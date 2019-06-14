@@ -13,6 +13,7 @@
     "init": "npm install",
     "start": "node server/server.js | bunyan -o short",
     "test": "if which gulp ; then gulp test ; else echo 'no gulp' ; fi",
+    "setup": "if which setup ; then setup ; else echo 'no setup' ; fi",
     "lint": "if which lint ; then lint ; else echo 'no lint' ; fi"
   },
   "dependencies": {
