@@ -12,7 +12,8 @@
   "scripts": {
     "init": "npm install",
     "start": "node server/server.js | bunyan -o short",
-    "test": "gulp test"
+    "test": "if which gulp ; then gulp test ; else echo 'no gulp' ; fi",
+    "lint": "if which lint ; then lint ; else echo 'no lint' ; fi"
   },
   "dependencies": {
     "bluebird": "^2.10.2",
