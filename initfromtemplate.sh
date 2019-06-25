@@ -31,4 +31,7 @@ git mv server/domain/domain.js server/domain/$lowercasedomain.js
 find . -name '*.js' -exec sed -i -e 's/CamelCaseDomain/'"$CamelCaseDomain"'/g' {} \;
 find . -name '*.js' -exec sed -i -e 's/pascalCaseDomain/'"$pascalCaseDomain"'/g' {} \;
 find . -name '*.js' -exec sed -i -e 's/lowercasedomain/'"$lowercasedomain"'/g' {} \;
+find . -name 'Jenkinsfile' -exec sed -i -e 's/CamelCaseDomain/'"$CamelCaseDomain"'/g' {} \;
+find . -name 'Jenkinsfile' -exec sed -i -e 's/pascalCaseDomain/'"$pascalCaseDomain"'/g' {} \;
+find . -name 'Jenkinsfile' -exec sed -i -e 's/lowercasedomain/'"$lowercasedomain"'/g' {} \;
 
